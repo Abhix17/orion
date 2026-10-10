@@ -1,0 +1,564 @@
+[
+  {
+    "case_id": "PHISH_URL_001",
+    "id": "PHISH_URL_001",
+    "scenario": "phishing",
+    "modality": "url",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Hand-crafted synthetic fixtures representing canonical attack patterns. Not real victim data."
+    },
+    "input_data": {
+      "url": "http://secure-sbi-kyc-update.xyz/login.php",
+      "context": "Dear customer, your SBI account will be blocked today. Update KYC urgently."
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "phishing",
+    "expected_risk_level": "HIGH",
+    "expected_response_class": "BLOCK_AND_WARN",
+    "description": "Known banking phishing lookalike with high entropy and credential path"
+  },
+  {
+    "case_id": "PHISH_URL_002",
+    "id": "PHISH_URL_002",
+    "scenario": "phishing",
+    "modality": "url",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic fixture — not a real phishing URL currently in use."
+    },
+    "input_data": {
+      "url": "http://login.microsoft.security-verify.top/auth/login",
+      "context": "Your Microsoft 365 session has expired. Re-authenticate immediately."
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "phishing",
+    "expected_risk_level": "HIGH",
+    "expected_response_class": "BLOCK_AND_WARN",
+    "description": "Enterprise SSO spoofing domain targeting corporate credentials"
+  },
+  {
+    "case_id": "PHISH_URL_003",
+    "id": "PHISH_URL_003",
+    "scenario": "phishing",
+    "modality": "url",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Punycode homograph pattern — synthetic fixture."
+    },
+    "input_data": {
+      "url": "http://xn--pypa-epa.com/signin/verify",
+      "context": "Verify unauthorized PayPal transaction of $499.00."
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "phishing",
+    "expected_risk_level": "HIGH",
+    "expected_response_class": "BLOCK_AND_WARN",
+    "description": "Punycode brand homograph targeting PayPal"
+  },
+  {
+    "case_id": "MALURL_001",
+    "id": "MALURL_001",
+    "scenario": "malicious_url",
+    "modality": "url",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Known malicious NetBanking pattern — synthetic fixture not targeting real servers."
+    },
+    "input_data": {
+      "url": "http://hdfc-security-netbanking.top/login.html",
+      "context": "Mandatory PAN linkage update required for HDFC account."
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "malicious_url",
+    "expected_risk_level": "HIGH",
+    "expected_response_class": "BLOCK_AND_WARN",
+    "description": "Known malicious NetBanking domain listed in threat intelligence feeds"
+  },
+  {
+    "case_id": "BENIGN_URL_001",
+    "id": "BENIGN_URL_001",
+    "scenario": "benign",
+    "modality": "url",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Public domain — google.com is a publicly known legitimate URL."
+    },
+    "input_data": {
+      "url": "https://www.google.com/search?q=cybersecurity+standards",
+      "context": "Searching for cybersecurity compliance frameworks."
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Legitimate major search engine query"
+  },
+  {
+    "case_id": "BENIGN_URL_002",
+    "id": "BENIGN_URL_002",
+    "scenario": "benign",
+    "modality": "url",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Public domain — github.com is a publicly known legitimate platform."
+    },
+    "input_data": {
+      "url": "https://github.com/torvalds/linux",
+      "context": "Checking Linux kernel git repository."
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Verified open-source repository on legitimate platform"
+  },
+  {
+    "case_id": "BENIGN_URL_003",
+    "id": "BENIGN_URL_003",
+    "scenario": "benign",
+    "modality": "url",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Public domain — microsoft.com is a publicly known legitimate enterprise vendor."
+    },
+    "input_data": {
+      "url": "https://www.microsoft.com/en-us/security/business",
+      "context": "Microsoft Enterprise Security portal."
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Legitimate enterprise vendor website"
+  },
+  {
+    "case_id": "BENIGN_URL_004",
+    "id": "BENIGN_URL_004",
+    "scenario": "benign",
+    "modality": "url",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Public domain — developer.mozilla.org is a publicly known legitimate resource."
+    },
+    "input_data": {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+      "context": "MDN Web Docs HTTP documentation."
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Legitimate technical documentation resource"
+  },
+  {
+    "case_id": "PHISH_MSG_001",
+    "id": "PHISH_MSG_001",
+    "scenario": "phishing",
+    "modality": "message",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic phishing text following canonical credential-harvesting patterns."
+    },
+    "input_data": {
+      "text": "CRITICAL ALERT: Your bank account will be permanently deactivated in 2 hours unless you confirm your debit card PIN and login password immediately at the link below."
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "phishing",
+    "expected_risk_level": "HIGH",
+    "expected_response_class": "WARN",
+    "description": "Urgent coercive credential harvesting solicitation"
+  },
+  {
+    "case_id": "PHISH_MSG_002",
+    "id": "PHISH_MSG_002",
+    "scenario": "phishing",
+    "modality": "message",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic internal IT impersonation message."
+    },
+    "input_data": {
+      "text": "IT Support Notice: All company passwords expire today. Submit your current network credentials to avoid VPN lockout."
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "phishing",
+    "expected_risk_level": "HIGH",
+    "expected_response_class": "WARN",
+    "description": "Internal IT impersonation with credential harvesting"
+  },
+  {
+    "case_id": "PHISH_MSG_003",
+    "id": "PHISH_MSG_003",
+    "scenario": "phishing",
+    "modality": "message",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic advance-fee scam template."
+    },
+    "input_data": {
+      "text": "Congratulations! You won $2,500,000 in the International Rewards Draw. Send your banking details and $150 processing fee to claim."
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "phishing",
+    "expected_risk_level": "HIGH",
+    "expected_response_class": "WARN",
+    "description": "Advance-fee financial scam"
+  },
+  {
+    "case_id": "BENIGN_MSG_001",
+    "id": "BENIGN_MSG_001",
+    "scenario": "benign",
+    "modality": "message",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic benign enterprise communication."
+    },
+    "input_data": {
+      "text": "Dear team, please find attached the agenda for tomorrow's engineering architecture sprint review at 10:00 AM."
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Benign enterprise team communication"
+  },
+  {
+    "case_id": "BENIGN_MSG_002",
+    "id": "BENIGN_MSG_002",
+    "scenario": "benign",
+    "modality": "message",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic benign transactional notification."
+    },
+    "input_data": {
+      "text": "Your Amazon package with tracking #4928192 has been delivered to your front door. Thank you for shopping with us."
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Standard transactional delivery notification"
+  },
+  {
+    "case_id": "BENIGN_MSG_003",
+    "id": "BENIGN_MSG_003",
+    "scenario": "benign",
+    "modality": "message",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic routine corporate memo."
+    },
+    "input_data": {
+      "text": "Reminder: The cafeteria will be closed for maintenance this Friday from 2 PM to 4 PM. Apologies for any inconvenience."
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Routine corporate internal memo"
+  },
+  {
+    "case_id": "DEEPFAKE_AUDIO_001",
+    "id": "gt_audio_01",
+    "scenario": "deepfake_audio",
+    "modality": "audio",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Injected synthetic score representing high-fidelity voice cloning. No real recording used."
+    },
+    "input_data": {
+      "claimed_identity_name": "Rajesh Sharma",
+      "provided_transcript": "This is Rajesh Sharma. I am in an urgent meeting with overseas auditors. Immediately transfer 250,000 dollars to the designated escrow account without waiting for regular procurement approval.",
+      "injected_synthetic_score": 0.94,
+      "injected_similarity_score": 0.91
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "voice_clone",
+    "expected_risk_level": "CRITICAL",
+    "expected_response_class": "VERIFY_AND_FLAG",
+    "description": "High-fidelity synthetic voice impersonating enterprise CFO with urgent wire coercion"
+  },
+  {
+    "case_id": "DEEPFAKE_AUDIO_002",
+    "id": "gt_audio_02",
+    "scenario": "deepfake_audio",
+    "modality": "audio",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Injected synthetic score — synthetic fixture, no real recording used."
+    },
+    "input_data": {
+      "claimed_identity_name": "Dr. Aris Thorne",
+      "provided_transcript": "Director Thorne here. Authorize the emergency network access keys for vendor contractor right away.",
+      "injected_synthetic_score": 0.89,
+      "injected_similarity_score": 0.86
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "voice_clone",
+    "expected_risk_level": "CRITICAL",
+    "expected_response_class": "VERIFY_AND_FLAG",
+    "description": "Synthetic voice targeting Vice Chancellor with credential/access demand"
+  },
+  {
+    "case_id": "BENIGN_AUDIO_001",
+    "id": "gt_audio_03",
+    "scenario": "benign",
+    "modality": "audio",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Low synthetic score + benign transcript. Represents authentic executive voice baseline."
+    },
+    "input_data": {
+      "claimed_identity_name": "Rajesh Sharma",
+      "provided_transcript": "Good morning team, let us review the quarterly financial deck during our scheduled sync at 2 PM.",
+      "injected_synthetic_score": 0.08,
+      "injected_similarity_score": 0.92
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Authentic human executive voice with routine non-coercive request"
+  },
+  {
+    "case_id": "BENIGN_AUDIO_002",
+    "id": "gt_audio_04",
+    "scenario": "benign",
+    "modality": "audio",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic AI media used legitimately (customer service). No malicious intent or identity claim."
+    },
+    "input_data": {
+      "claimed_identity_name": null,
+      "provided_transcript": "Welcome to our AI customer support line. How may I assist you with your subscription today?",
+      "injected_synthetic_score": 0.95,
+      "injected_similarity_score": 0.10
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "informational_ai_media",
+    "expected_risk_level": "LOW",
+    "expected_response_class": "NO_ACTION",
+    "description": "Synthetic voice used for benign AI customer service (AI-generated != malicious)"
+  },
+  {
+    "case_id": "ATO_001",
+    "id": "gt_auth_01",
+    "scenario": "account_takeover",
+    "modality": "auth_event",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic impossible travel + credential attack scenario. No real user or IP targeted."
+    },
+    "input_data": {
+      "user_id": "exec_alice",
+      "ip_address": "194.26.29.112",
+      "latitude": 50.1109,
+      "longitude": 8.6821,
+      "city": "Frankfurt",
+      "country": "DE",
+      "asn": "AS51167",
+      "device_id": "dev_attacker_kali_v4",
+      "success": false,
+      "injected_failed_burst": 5
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "account_takeover",
+    "expected_risk_level": "CRITICAL",
+    "expected_response_class": "SESSION_CONTAINMENT",
+    "description": "Impossible travel (SF to Frankfurt in 20 min) + failed login burst + unknown device"
+  },
+  {
+    "case_id": "ATO_002",
+    "id": "gt_auth_02",
+    "scenario": "account_takeover",
+    "modality": "auth_event",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic C2 IP match scenario. IP address is from public threat intel test ranges."
+    },
+    "input_data": {
+      "user_id": "admin_charlie",
+      "ip_address": "185.220.101.5",
+      "latitude": 55.7558,
+      "longitude": 37.6173,
+      "city": "Moscow",
+      "country": "RU",
+      "asn": "AS20000",
+      "device_id": "dev_unknown_bot_99",
+      "success": false,
+      "injected_failed_burst": 3
+    },
+    "ground_truth_label": "MALICIOUS",
+    "expected_threat_type": "account_takeover",
+    "expected_risk_level": "CRITICAL",
+    "expected_response_class": "SESSION_CONTAINMENT",
+    "description": "Login from confirmed C2 malicious indicator in threat intelligence database"
+  },
+  {
+    "case_id": "BENIGN_AUTH_001",
+    "id": "gt_auth_03",
+    "scenario": "benign",
+    "modality": "auth_event",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic routine executive login. IP is private range."
+    },
+    "input_data": {
+      "user_id": "exec_alice",
+      "ip_address": "192.168.1.50",
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "city": "San Francisco",
+      "country": "US",
+      "asn": "AS15169",
+      "device_id": "dev_mac_alice_99",
+      "success": true,
+      "injected_failed_burst": 0
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Routine executive login from known workstation and home geography"
+  },
+  {
+    "case_id": "BENIGN_AUTH_002",
+    "id": "gt_auth_04",
+    "scenario": "benign",
+    "modality": "auth_event",
+    "dataset": {
+      "name": "ORION Phase 7 Synthetic Evaluation Set",
+      "source": "synthetic",
+      "type": "SYNTHETIC_DATA",
+      "version": "7.0.0",
+      "generation_date": "2026-09-28",
+      "license": "Internal evaluation use only",
+      "note": "Synthetic routine developer login. IP is private range."
+    },
+    "input_data": {
+      "user_id": "dev_bob",
+      "ip_address": "10.100.2.14",
+      "latitude": 12.9716,
+      "longitude": 77.5946,
+      "city": "Bengaluru",
+      "country": "IN",
+      "asn": "AS9498",
+      "device_id": "dev_thinkpad_bob_01",
+      "success": true,
+      "injected_failed_burst": 0
+    },
+    "ground_truth_label": "SAFE",
+    "expected_threat_type": "benign",
+    "expected_risk_level": "SAFE",
+    "expected_response_class": "NO_ACTION",
+    "description": "Routine developer login from registered ThinkPad laptop"
+  }
+]

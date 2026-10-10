@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORION Browser Shield</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="shield-container">
+    <!-- Header -->
+    <header class="shield-header">
+      <div class="logo-group">
+        <div class="shield-icon-badge">O</div>
+        <div class="logo-text">
+          <span class="brand-title">ORION</span>
+          <span class="brand-sub">BROWSER SHIELD</span>
+        </div>
+      </div>
+      <div id="protection-pill" class="protection-pill pill-protected">
+        <span class="dot"></span>
+        <span id="protection-pill-text">Protected</span>
+      </div>
+    </header>
+
+    <!-- Current Site Card -->
+    <section class="site-card">
+      <div class="site-meta-row">
+        <span class="site-label">CURRENT HOSTNAME</span>
+        <span id="site-risk-tag" class="site-risk-tag" style="display: none;"></span>
+      </div>
+      <div id="hostname-text" class="site-hostname" title="Current Hostname">Loading...</div>
+      <div id="page-title-text" class="site-title" style="display: none;"></div>
+    </section>
+
+    <!-- Dynamic Status State Container -->
+    <main id="state-container" class="state-container">
+      
+      <!-- STATE: NOT_ANALYZED (DEFAULT) -->
+      <div id="state-not-analyzed" class="state-view">
+        <div class="state-idle-icon">○</div>
+        <h3 class="state-title">Not Yet Analyzed</h3>
+        <p class="state-desc">This webpage has not been inspected for threats. Run a bounded security check to evaluate links and forms.</p>
+        <button id="primary-analyze-btn" class="btn btn-primary" style="margin-top: 12px; width: 100%;">
+          ⚡ Analyze this page
+        </button>
+      </div>
+
+      <!-- STATE: ANALYZING -->
+      <div id="state-analyzing" class="state-view" style="display: none;">
+        <div class="spinner-orbit">
+          <div class="spinner-ring"></div>
+        </div>
+        <h3 class="state-title">Inspecting page signals...</h3>
+        <p class="state-desc">Checking domain certificates, form targets, and threat intelligence feeds.</p>
+      </div>
+
+      <!-- STATE: SAFE -->
+      <div id="state-safe" class="state-view" style="display: none;">
+        <div class="status-banner banner-safe">
+          <span class="status-icon">✓</span>
+          <div>
+            <div class="status-headline">SAFE / NO OBVIOUS THREAT</div>
+            <div class="status-subline">Verified legitimate security signals.</div>
+          </div>
+        </div>
+        <p class="safe-note">This website appears authentic. No deceptive indicators detected.</p>
+      </div>
+
+      <!-- STATE: SUSPICIOUS (MEDIUM) -->
+      <div id="state-suspicious" class="state-view" style="display: none;">
+        <div class="status-banner banner-warning">
+          <span class="status-icon">⚠</span>
+          <div>
+            <div class="status-headline">SUSPICIOUS SIGNALS</div>
+            <div class="status-subline">Potential threat indicators observed.</div>
+          </div>
+        </div>
+        <p class="warning-note">ORION found unusual signals on this domain. Exercise caution before submitting passwords or personal info.</p>
+      </div>
+
+      <!-- STATE: DANGER (HIGH / CRITICAL) -->
+      <div id="state-danger" class="state-view" style="display: none;">
+        <div id="danger-banner" class="status-banner banner-danger">
+          <span class="status-icon">🚨</span>
+          <div>
+            <div id="danger-headline" class="status-headline">HIGH RISK DETECTED</div>
+            <div id="danger-subline" class="status-subline">Credential harvesting or phishing</div>
+          </div>
+        </div>
+        <div class="danger-warning-box">
+          <div id="danger-warning-message" class="danger-warning-text">
+            Strong indicators associated with credential harvesting. Avoid entering credentials.
+          </div>
+          <ul id="danger-flags-list" class="danger-flags-list">
+            <!-- Dynamic flags populated by JS -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- STATE: INCONCLUSIVE -->
+      <div id="state-inconclusive" class="state-view" style="display: none;">
+        <div class="status-banner banner-offline">
+          <span class="status-icon">?</span>
+          <div>
+            <div class="status-headline">INCONCLUSIVE</div>
+            <div class="status-subline">Insufficient reliable evidence.</div>
+          </div>
+        </div>
+        <p class="offline-note">ORION couldn't obtain enough reliable signals to render a confident assessment. Treat this page with caution.</p>
+      </div>
+
+      <!-- STATE: UNAVAILABLE -->
+      <div id="state-unavailable" class="state-view" style="display: none;">
+        <div class="status-banner banner-offline">
+          <span class="status-icon">—</span>
+          <div>
+            <div class="status-headline">ORION UNAVAILABLE</div>
+            <div class="status-subline">This page could not be checked.</div>
+          </div>
+        </div>
+        <p class="offline-note">The backend service is currently offline or unreachable.</p>
+        <button id="retry-btn" class="btn btn-secondary" style="margin-top: 8px;">Retry</button>
+      </div>
+
+    </main>
+
+    <!-- Collapsible Details Section -->
+    <section id="details-section" class="details-section" style="display: none;">
+      <div class="details-header">
+        <span class="details-label">ANALYSIS SIGNALS</span>
+        <span id="risk-score-display" class="risk-score-pill">0.00</span>
+      </div>
+      <div class="details-content">
+        <div class="detail-row">
+          <span class="detail-name">Classification:</span>
+          <span id="detail-threat-type" class="detail-value">None</span>
+        </div>
+        <ul id="detail-evidence-list" class="evidence-list">
+          <!-- Populated dynamically -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- Action Buttons Group -->
+    <div class="actions-group">
+      <button id="re-analyze-btn" class="btn btn-secondary" style="display: none;">
+        🔄 Re-analyze Page
+      </button>
+      <a id="investigate-btn" href="#" target="_blank" class="btn btn-primary" style="display: none;">
+        View Analysis in ORION ↗
+      </a>
+      <button id="toggle-details-btn" class="btn btn-ghost" style="display: none;">
+        Toggle Signal Details
+      </button>
+      <button id="go-back-btn" class="btn btn-danger-action" style="display: none;">
+        Leave This Website
+      </button>
+    </div>
+
+    <!-- Secondary Context Actions -->
+    <section class="secondary-actions-panel">
+      <div class="secondary-label">CHECK OTHER MODALITIES</div>
+      <div class="quick-links-grid">
+        <button id="check-text-btn" class="quick-btn">📝 Check Text</button>
+        <button id="check-link-btn" class="quick-btn">🔗 Check Link</button>
+        <button id="check-img-btn" class="quick-btn">🖼️ Check Image</button>
+      </div>
+    </section>
+
+    <!-- Privacy & Onboarding Accordion -->
+    <section class="privacy-section">
+      <button id="privacy-toggle-btn" class="privacy-toggle">
+        <span>🔒 What ORION Shield Can See</span>
+        <span id="privacy-arrow">▼</span>
+      </button>
+      <div id="privacy-content" class="privacy-content" style="display: none;">
+        <div class="privacy-quote">
+          "ORION watches for security signals, not people."
+        </div>
+        <div class="privacy-list">
+          <div class="privacy-item allowed">✓ Current website hostname & form targets</div>
+          <div class="privacy-item allowed">✓ Real-time page signals to detect phishing & deceptive portals</div>
+          <div class="privacy-item allowed">✓ Text or links you select for verification</div>
+          <div class="privacy-item denied">✗ Passwords or typed keystrokes</div>
+          <div class="privacy-item denied">✗ Session cookies or auth tokens</div>
+          <div class="privacy-item denied">✗ Continuous screen recording or scraping</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer App Link -->
+    <footer class="shield-footer">
+      <a id="open-dashboard-btn" href="#" target="_blank" class="footer-link">
+        Open ORION Web Dashboard ↗
+      </a>
+    </footer>
+  </div>
+
+  <script src="../config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

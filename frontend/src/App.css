@@ -1,0 +1,56 @@
+/* ORION v2 App Component Specific Styles */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-deep);
+}
+
+.main-content {
+  flex: 1;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Landing Page Responsive Hero Classes */
+.hero-phone-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  padding: 20px 0;
+  z-index: 2;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .hero-phone-col {
+    flex-direction: column !important;
+  }
+  .hero-analysis-overlay {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin-top: -60px !important;
+    width: 100% !important;
+    max-width: 330px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hero-analysis-overlay {
+    position: absolute !important;
+    bottom: 20px !important;
+    right: -15px !important;
+    width: 340px !important;
+  }
+}

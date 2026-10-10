@@ -1,0 +1,86 @@
+policy_version: "4.0"
+
+severity:
+  safe:
+    max_score: 0.20
+  low:
+    min_score: 0.20
+    max_score: 0.40
+  medium:
+    min_score: 0.40
+    max_score: 0.70
+  high:
+    min_score: 0.70
+    max_score: 0.85
+  critical:
+    min_score: 0.85
+    max_score: 1.00
+
+severity_multipliers:
+  NONE: 0.0
+  LOW: 0.10
+  MEDIUM: 0.25
+  HIGH: 0.40
+  CRITICAL: 0.60
+
+evidence:
+  unavailable_weight_cap: 0.0
+  inconclusive_weight_cap: 0.05
+  duplicate_dampening_factor: 0.50
+
+interactions:
+  voice_impersonation:
+    bonus: 0.25
+    circuit_breaker_floor: 0.95
+    reason: "Multiplicative synergy: Synthetic voice impersonating authorized identity with urgent financial demand."
+  lookalike_credential:
+    bonus: 0.20
+    circuit_breaker_floor: 0.85
+    reason: "Multiplicative synergy: Look-alike domain hosting active credential solicitation."
+  threat_intel_override:
+    bonus: 0.0
+    circuit_breaker_floor: 0.90
+    reason: "Circuit-breaker override: Active malicious IOC match in verified Threat Intelligence feeds."
+  ato_multi_factor:
+    bonus: 0.20
+    circuit_breaker_floor: 0.85
+    reason: "Multiplicative synergy: Failed authentication burst followed by anomalous device or geography."
+  impossible_travel:
+    bonus: 0.0
+    circuit_breaker_floor: 0.88
+    reason: "Circuit-breaker override: Physically impossible travel velocity detected between login locations."
+  multimodal_video_full:
+    bonus: 0.25
+    circuit_breaker_floor: 0.95
+    reason: "Multiplicative synergy: Synthetic video impersonating protected identity combined with synthetic audio or financial coercion."
+  multimodal_video_dual:
+    bonus: 0.15
+    circuit_breaker_floor: 0.85
+    reason: "Multiplicative synergy: Concurrent visual deepfake indicators and synthetic audio generation."
+  multimodal_video_av_mismatch:
+    bonus: 0.10
+    circuit_breaker_floor: 0.70
+    reason: "Multiplicative synergy: Audio-visual desynchronization detected on targeted identity."
+
+type_threat_mapping:
+  LOOKALIKE_DOMAIN: ["phishing", 0.4]
+  CREDENTIAL_PATH: ["credential_theft", 0.3]
+  URLBERT_MALICIOUS: ["malicious_url", 0.4]
+  THREAT_INTEL_MATCH: ["malicious_url", 0.5]
+  PHISHING_LANGUAGE: ["phishing", 0.4]
+  CREDENTIAL_HARVEST_INTENT: ["credential_theft", 0.4]
+  FINANCIAL_DEMAND_INTENT: ["impersonation", 0.35]
+  SYNTHETIC_SPEECH_DETECTED: ["voice_clone", 0.45]
+  SYNTHETIC_AUDIO_DETECTED: ["voice_clone", 0.45]
+  SPEAKER_SIMILARITY_MATCH: ["impersonation", 0.4]
+  PROTECTED_IDENTITY_TARGETED: ["impersonation", 0.4]
+  AI_GENERATED_MEDIA: ["deepfake_image", 0.35]
+  FACE_TAMPERING_INDICATOR: ["deepfake_image", 0.4]
+  TEMPORAL_VIDEO_FLICKER: ["deepfake_video", 0.55]
+  DEEPFAKE_VIDEO: ["deepfake_video", 0.55]
+  AUDIO_VISUAL_MISMATCH: ["deepfake_video", 0.35]
+  FAILED_LOGIN_BURST: ["authentication_anomaly", 0.35]
+  ISOLATION_FOREST_ANOMALY: ["account_takeover", 0.45]
+  IMPOSSIBLE_TRAVEL: ["account_takeover", 0.4]
+  ANOMALOUS_GEOLOCATION: ["authentication_anomaly", 0.3]
+  NEW_DEVICE_FINGERPRINT: ["authentication_anomaly", 0.25]
